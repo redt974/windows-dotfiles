@@ -6,7 +6,7 @@ Puis, ajouter ou modifier le ou les fichiers suivants : `C:/Users/<USERNAME>/Win
 
 Copier / Coller le contenu du fichier suivant `windows-dotfiles/powershell/profile.ps1`.
 
-Installer `[oh-my-posh](https://ohmyposh.dev/)` avec cette commande :
+Installer [oh-my-posh](https://ohmyposh.dev/) avec cette commande :
 
 ```
 winget install JanDeDobbeleer.OhMyPosh --source winget
