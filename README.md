@@ -6,8 +6,14 @@ Puis, ajouter ou modifier le ou les fichiers suivants : `C:/Users/<USERNAME>/Win
 
 Copier / Coller le contenu du fichier suivant `windows-dotfiles/powershell/profile.ps1`.
 
-Installer [oh-my-posh](https://ohmyposh.dev/) avec cette commande :
+Installer [oh-my-posh](https://ohmyposh.dev/) avec cette commande dans un PowerShell en tant qu'Administrateur :
 
-```
+```powershell
 winget install JanDeDobbeleer.OhMyPosh --source winget
+```
+
+Installer [fastfetch](https://github.com/fastfetch-cli/fastfetch) avec cette commande dans un PowerShell en tant qu'Administrateur :
+
+```powershell
+winget install fastfetch
 ```
