@@ -6,6 +6,8 @@ Puis, ajouter ou modifier le ou les fichiers suivants : `C:/Users/<USERNAME>/Win
 
 Copier / Coller le contenu du fichier suivant : `windows-dotfiles/powershell/profile.ps1`.
 
+---
+
 Installer [oh-my-posh](https://ohmyposh.dev/) avec cette commande dans un PowerShell en tant qu'Administrateur :
 
 - Winget :
@@ -19,6 +21,8 @@ winget install ohmyposh
 choco install ohmyposh
 ```
 
+---
+
 Installer [fastfetch](https://github.com/fastfetch-cli/fastfetch) avec cette commande dans un PowerShell en tant qu'Administrateur :
 
 - Winget :
@@ -31,6 +35,8 @@ winget install fastfetch
 ```powershell
 choco install fastfetch
 ```
+
+---
 
 Installer [neovim](https://neovim.io/) avec cette commande et on va créer un lien symbolique pour le lier la config avec neovim : 
 
