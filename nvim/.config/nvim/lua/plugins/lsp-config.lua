@@ -1,42 +1,40 @@
 return {
   {
-    "williamboman/mason.nvim",
-    lazy = false,
-    config = function()
-      require("mason").setup()
-    end,
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    lazy = false,
-    opts = {
-      auto_install = true,
-    },
-  },
-  {
     "neovim/nvim-lspconfig",
-    lazy = false,
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      -- Lua
+      vim.lsp.config.lua_ls = {
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { "vim" },
+            },
+            workspace = {
+              library = vim.api.nvim_get_runtime_file("", true),
+              checkThirdParty = false,
+            },
+          },
+        },
+      }
 
-      local lspconfig = require("lspconfig")
-      lspconfig.tsserver.setup({
-        capabilities = capabilities
-      })
-      lspconfig.solargraph.setup({
-        capabilities = capabilities
-      })
-      lspconfig.html.setup({
-        capabilities = capabilities
-      })
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities
-      })
+      -- TypeScript / JavaScript (nouveau nom)
+      vim.lsp.config.ts_ls = {
+        cmd = { "typescript-language-server", "--stdio" },
+        filetypes = {
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+        },
+        root_markers = { "package.json", "tsconfig.json", ".git" },
+      }
 
-      vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-      vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
-      vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
-      vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+      -- Activer les serveurs
+      vim.lsp.enable({
+        "lua_ls",
+        "ts_ls",
+      })
     end,
   },
 }
