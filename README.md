@@ -50,3 +50,13 @@ New-Item -ItemType SymbolicLink `
   -Path $env:LOCALAPPDATA\nvim `
   -Target C:\Users\<USERNAME>\dotfiles\nvim\
 ```
+
+---
+
+## Fastfetch :
+
+Pour utiliser `fastfetch`, on peut utiliser le raccourci configuré : `ff` ou `ff-ascii` ou `ff-pokemon`
+
+A l'ouverture d'un terminal Powershell, vous aurez donc un fastfetch en ascii Elden Ring par défaut avec une citation aléatoire.
+
+Mais si vous préférez Pokémon, faites la commande : `ff pokemon`
