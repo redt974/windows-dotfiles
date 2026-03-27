@@ -5,7 +5,7 @@ $DOTFILES   = "$HOME\dotfiles"
 $PS_ROOT    = "$DOTFILES\powershell"
 $PS_MODULES = "$PS_ROOT\modules"
 $POSH_CFG   = "$DOTFILES\.oh-my-posh\atomic.omp.json"
-$FASTFETCH  = "$DOTFILES\.config\fastfetch\config.jsonc"
+$FASTFETCH  = "$DOTFILES\powershell\fastfetch\config.jsonc"
 
 # ===============================
 # Encoding
@@ -32,7 +32,24 @@ if (Get-Command oh-my-posh.exe -ErrorAction SilentlyContinue) {
 
 Import-Module Terminal-Icons -ErrorAction SilentlyContinue
 
-if (Get-Command fastfetch -ErrorAction SilentlyContinue) {
-    fastfetch -c "$FASTFETCH"
-    #fastfetch
+# ===============================
+# Fastfetch ASCII art
+# ===============================
+if (Test-Path "$DOTFILES\powershell\fastfetch\fastfetch.ps1") {
+    & "$DOTFILES\powershell\fastfetch\fastfetch.ps1" auto
+}
+
+# ===============================
+# Fastfetch shortcuts
+# ===============================
+function ff {
+    & "$DOTFILES\powershell\fastfetch\fastfetch.ps1" @args
+}
+
+function ff-ascii {
+    & "$DOTFILES\powershell\fastfetch\fastfetch.ps1" ascii
+}
+
+function ff-pokemon {
+    & "$DOTFILES\powershell\fastfetch\fastfetch.ps1" pokemon
 }

@@ -48,5 +48,5 @@ choco install neovim
 ```powershell
 New-Item -ItemType SymbolicLink `
   -Path $env:LOCALAPPDATA\nvim `
-  -Target C:\Users\<USERNAME>\dotfiles\nvim\.config\nvim
+  -Target C:\Users\<USERNAME>\dotfiles\nvim\
 ```
