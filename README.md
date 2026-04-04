@@ -29,6 +29,7 @@ Installer [fastfetch](https://github.com/fastfetch-cli/fastfetch) avec cette com
 
 ```powershell
 winget install fastfetch
+winget install sharkdp.fd
 ```
 - Choco :
 
@@ -63,6 +64,9 @@ New-Item -ItemType SymbolicLink `
 
 Pour utiliser `fastfetch`, on peut utiliser le raccourci configuré : `ff` ou `ff-ascii` ou `ff-pokemon`
 
-A l'ouverture d'un terminal Powershell, vous aurez donc un fastfetch en ascii Elden Ring par défaut avec une citation aléatoire.
+A l'ouverture d'un terminal Powershell
+
+
+, vous aurez donc un fastfetch en ascii Elden Ring par défaut avec une citation aléatoire.
 
 Mais si vous préférez Pokémon, faites la commande : `ff pokemon`

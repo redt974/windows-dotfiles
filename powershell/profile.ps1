@@ -39,10 +39,11 @@ Import-Module Terminal-Icons -ErrorAction SilentlyContinue
 # tree.exe alias
 function tree { tree.exe @args }
 
-# fzf with full path output
+# fzf from current directory with full path output
 function fzf {
-    $result = & fzf.exe @args
-    if ($result) { (Resolve-Path $result).Path }
+    fd.exe |
+        fzf.exe |
+        ForEach-Object { (Get-Item $_).FullName }
 }
 
 # ===============================
