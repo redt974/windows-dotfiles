@@ -33,6 +33,10 @@ if (Get-Command oh-my-posh.exe -ErrorAction SilentlyContinue) {
 Import-Module Terminal-Icons -ErrorAction SilentlyContinue
 
 # ===============================
+# Aliases
+# ===============================
+
+# ===============================
 # Fastfetch ASCII art
 # ===============================
 if (Test-Path "$DOTFILES\powershell\fastfetch\fastfetch.ps1") {

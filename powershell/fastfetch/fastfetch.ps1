@@ -134,7 +134,11 @@ if ($mode -in @("ascii", "auto") -and $lines.Count -gt 0) {
     foreach ($line in $lines) {
         if ($line.Trim() -ne "") {
             $safe = $line -replace '"', '\"'
+<<<<<<< HEAD
             $quoteEntries += '{ "type": "custom", "format": "\u275d \u001b[3m' + $safe + '\u001b[0m \u275e" }'
+=======
+            $quoteEntries += '{ "type": "custom", "format": "❝ \u001b[3m' + $safe + '\u001b[0m ❞" }'
+>>>>>>> c6b3cbf1e6e09214da59c361090d48d7c1fedac4
         }
     }
 
@@ -144,7 +148,11 @@ if ($mode -in @("ascii", "auto") -and $lines.Count -gt 0) {
 }
 else {
     # ⚠️ IMPORTANT : supprimer proprement la ligne
+<<<<<<< HEAD
     $configContent = $configContent -replace ",?\s*__QUOTE_BLOCK__\s*", ""
+=======
+    $configContent = $configContent -replace ",?\s*/\*__QUOTE_BLOCK__\*/", ""
+>>>>>>> c6b3cbf1e6e09214da59c361090d48d7c1fedac4
 }
 
 # ===============================
@@ -158,6 +166,13 @@ if ($outputBytes.Length -ge 3 -and $outputBytes[0] -eq 0xEF -and $outputBytes[1]
     $outputBytes = $outputBytes[3..($outputBytes.Length - 1)]
 }
 
+<<<<<<< HEAD
+=======
+Write-Host "DEBUG char[0]: $([int][char]$configContent[0])"
+Write-Host "DEBUG bytes[0]: $($outputBytes[0])"
+Write-Host "DEBUG bytes[1]: $($outputBytes[1])"
+Write-Host "DEBUG bytes[2]: $($outputBytes[2])"
+>>>>>>> c6b3cbf1e6e09214da59c361090d48d7c1fedac4
 [System.IO.File]::WriteAllBytes($tempConfig, $outputBytes)
 
 # ===============================
@@ -203,7 +218,7 @@ finally {
         Remove-Item $backupAscii -Force
     }
 
-    if (Test-Path $tempConfig) {
-        Remove-Item $tempConfig -Force -ErrorAction SilentlyContinue
-    }
+    # if (Test-Path $tempConfig) {
+    #     Remove-Item $tempConfig -Force -ErrorAction SilentlyContinue
+    # }
 }
