@@ -60,6 +60,21 @@ New-Item -ItemType SymbolicLink `
 
 ---
 
+Installer [ntop](https://github.com/gsass1/NTop) avec cette commande dans un PowerShell en tant qu'Administrateur :
+
+- Winget :
+
+```powershell
+winget install gsass1.NTop
+```
+- Choco :
+
+```powershell
+choco install ntop.portable
+```
+
+---
+
 ## Fastfetch :
 
 Pour utiliser `fastfetch`, on peut utiliser le raccourci configuré : `ff` ou `ff-ascii` ou `ff-pokemon`

@@ -38,6 +38,7 @@ Import-Module Terminal-Icons -ErrorAction SilentlyContinue
 
 # tree.exe alias
 function tree { tree.exe @args }
+function htop { ntop.exe @args }
 
 # fzf from current directory with full path output
 function fzf {
