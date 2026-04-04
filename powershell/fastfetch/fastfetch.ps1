@@ -4,6 +4,17 @@ param(
 )
 
 # ===============================
+# ANSI FIX (CRITIQUE)
+# ===============================
+$ESC = [char]27
+
+if ($PSVersionTable.PSVersion.Major -ge 7) {
+    $PSStyle.OutputRendering = "Ansi"
+} else {
+    $env:TERM = "xterm-256color"
+}
+
+# ===============================
 # Paths
 # ===============================
 $scriptPath   = "$env:USERPROFILE\dotfiles\powershell\fastfetch"
@@ -32,9 +43,7 @@ if (-not $PSBoundParameters.ContainsKey('mode')) {
 switch ($mode.ToLower()) {
 
     "pokemon" {
-        # Génère un nouveau Pokémon
         & "$scriptPath\pokemon.ps1"
-
         $tmpAscii = $pokeAscii
     }
 
@@ -83,57 +92,83 @@ $quote = $quote -replace "\\n", "`n" -replace "\\t", "`t" -replace '\\"', '"'
 $lines = $quote -split "`r?`n"
 
 # ===============================
-# Charger config
+# Charger config + Write temp (BYTES ONLY - PS5.1 safe)
 # ===============================
 if (!(Test-Path $configPath)) {
     Write-Host "❌ Config introuvable: $configPath"
     exit
 }
 
-$configContent = Get-Content $configPath -Raw
+$bytes = [System.IO.File]::ReadAllBytes($configPath)
+
+# Strip UTF-8 BOM (EF BB BF)
+if ($bytes.Length -ge 3 -and $bytes[0] -eq 0xEF -and $bytes[1] -eq 0xBB -and $bytes[2] -eq 0xBF) {
+    $bytes = $bytes[3..($bytes.Length - 1)]
+}
+
+# Décoder en string SANS BOM
+$configContent = [System.Text.Encoding]::UTF8.GetString($bytes)
+
+# Strip U+FEFF si encore présent
+if ($configContent.Length -gt 0 -and [int][char]$configContent[0] -eq 65279) {
+    $configContent = $configContent.Substring(1)
+}
+
 if ([string]::IsNullOrWhiteSpace($configContent)) {
     Write-Host "❌ Config vide !"
     exit
 }
 
 # ===============================
-# Injecter quote (PAS en pokemon)
+# Injecter quote
 # ===============================
-if ($mode -in @("ascii", "auto")) {
+if ($mode -in @("ascii", "auto") -and $lines.Count -gt 0) {
 
-    $quoteBlock = ""
+    $quoteEntries = @()
 
+    # lignes vides
     for ($i = 0; $i -lt 2; $i++) {
-        $quoteBlock += '{ "type": "custom", "format": " " },'
+        $quoteEntries += '{ "type": "custom", "format": " " }'
     }
 
     foreach ($line in $lines) {
         if ($line.Trim() -ne "") {
-            $lineBlock = $line -replace '"', '\"'
-            $quoteBlock += '{ "type": "custom", "format": "❝ \u001b[3m' + $lineBlock + '\u001b[0m ❞" },'
+            $safe = $line -replace '"', '\"'
+            $quoteEntries += '{ "type": "custom", "format": "\u275d \u001b[3m' + $safe + '\u001b[0m \u275e" }'
         }
     }
 
-    $configContent = $configContent -replace "__QUOTE_BLOCK__", $quoteBlock.TrimEnd(',')
+    $quoteBlock = ($quoteEntries -join ",`n        ")
+
+    $configContent = $configContent -replace "__QUOTE_BLOCK__", $quoteBlock
 }
 else {
-    $configContent = $configContent -replace "__QUOTE_BLOCK__", ""
+    # ⚠️ IMPORTANT : supprimer proprement la ligne
+    $configContent = $configContent -replace ",?\s*__QUOTE_BLOCK__\s*", ""
 }
 
 # ===============================
-# Write temp config
+# Write temp config - BYTES BRUTS, zéro trust PS5.1
 # ===============================
-Set-Content -Path $tempConfig -Value $configContent -Encoding UTF8
+$utf8NoBom = New-Object System.Text.UTF8Encoding $false
+$outputBytes = $utf8NoBom.GetBytes($configContent)
+
+# Vérification paranoïaque finale sur les bytes de sortie
+if ($outputBytes.Length -ge 3 -and $outputBytes[0] -eq 0xEF -and $outputBytes[1] -eq 0xBB -and $outputBytes[2] -eq 0xBF) {
+    $outputBytes = $outputBytes[3..($outputBytes.Length - 1)]
+}
+
+[System.IO.File]::WriteAllBytes($tempConfig, $outputBytes)
 
 # ===============================
-# Colorisation (ASCII ONLY)
+# Colorisation ASCII (FIX ANSI)
 # ===============================
 if ($mode -in @("ascii", "auto")) {
 
-    $fgGreen  = "`e[32m"
-    $fgYellow = "`e[33m"
-    $bgBlack  = "`e[40m"
-    $reset    = "`e[0m"
+    $fgGreen  = "$ESC[32m"
+    $fgYellow = "$ESC[33m"
+    $bgBlack  = "$ESC[40m"
+    $reset    = "$ESC[0m"
 
     $asciiLines = Get-Content $asciiPath
 
@@ -149,7 +184,11 @@ if ($mode -in @("ascii", "auto")) {
         $newLine
     }
 
-    $colored | Set-Content $asciiPath -Encoding UTF8
+    [System.IO.File]::WriteAllLines(
+        $asciiPath,
+        $colored,
+        (New-Object System.Text.UTF8Encoding($false))
+    )
 }
 
 # ===============================
