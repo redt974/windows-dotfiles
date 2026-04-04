@@ -203,7 +203,7 @@ finally {
         Remove-Item $backupAscii -Force
     }
 
-    # if (Test-Path $tempConfig) {
-    #     Remove-Item $tempConfig -Force -ErrorAction SilentlyContinue
-    # }
+    if (Test-Path $tempConfig) {
+        Remove-Item $tempConfig -Force -ErrorAction SilentlyContinue
+    }
 }

@@ -36,6 +36,15 @@ Import-Module Terminal-Icons -ErrorAction SilentlyContinue
 # Aliases
 # ===============================
 
+# tree.exe alias
+function tree { tree.exe @args }
+
+# fzf with full path output
+function fzf {
+    $result = & fzf.exe @args
+    if ($result) { (Resolve-Path $result).Path }
+}
+
 # ===============================
 # Fastfetch ASCII art
 # ===============================
