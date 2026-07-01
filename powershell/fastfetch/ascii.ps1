@@ -3,6 +3,10 @@ param(
     [switch]$Force
 )
 
+# Utilitaire manuel : matérialise ascii.txt à partir des sources figées,
+# pour un usage externe éventuel (autre outil, inspection, etc.).
+# fastfetch.ps1 n'en a plus besoin : il génère son propre rendu temporaire.
+
 $scriptPath = "$env:USERPROFILE\dotfiles\powershell\fastfetch"
 $asciiPath  = "$scriptPath\ascii.txt"
 $pokeAscii  = "$scriptPath\pokemon_ascii.txt"
@@ -15,7 +19,7 @@ switch ($mode) {
         }
     }
     "pokemon" {
-        if (Test-Path $pokeAscii) {
+        if ((Test-Path $pokeAscii) -and -not $Force) {
             Copy-Item $pokeAscii $asciiPath -Force
         } else {
             & "$scriptPath\pokemon.ps1" -Force:$Force
@@ -23,7 +27,6 @@ switch ($mode) {
         }
     }
     "auto" {
-        # Par défaut, auto = ASCII classique
         & "$scriptPath\ascii.ps1" -mode "ascii" -Force:$Force
     }
     default {

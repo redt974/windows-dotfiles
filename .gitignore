@@ -1,1 +1,11 @@
+## Cache :
 .cache/
+nvim/lazy-lock.json
+
+## Backup :
+.config/yasb/config.yaml.backup
+.config/yasb/styles.css.backup
+
+## Logs / Errors :
+.config/yasb/yasb.log
+.glzr/glazewm/errors.log

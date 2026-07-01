@@ -36,7 +36,9 @@ Import-Module Terminal-Icons -ErrorAction SilentlyContinue
 # Aliases
 # ===============================
 
-# tree.exe alias
+function ls { Get-ChildItem @args }
+function ld { Get-ChildItem -Directory @args }
+function lh { Get-ChildItem -Hidden @args }
 function tree { tree.exe @args }
 function htop { ntop.exe @args }
 
@@ -45,6 +47,39 @@ function fzf {
     fd.exe |
         fzf.exe |
         ForEach-Object { (Get-Item $_).FullName }
+}
+
+# OpenJarvis command
+function jarvis {
+    param(
+        [Parameter(Position=0)]
+        [string]$command,
+
+        [Parameter(ValueFromRemainingArguments=$true)]
+        $args
+    )
+
+    Push-Location "C:\Program Files\OpenJarvis"
+    try {
+
+        # Si aucun argument → mode interactif
+        if (-not $command) {
+            $inputText = Read-Host "Jarvis (ask)"
+
+            if ([string]::IsNullOrWhiteSpace($inputText)) {
+                return
+            }
+
+            & uv run jarvis ask $inputText
+            return
+        }
+
+        # sinon commande normale
+        & uv run jarvis $command @args
+    }
+    finally {
+        Pop-Location
+    }
 }
 
 # ===============================

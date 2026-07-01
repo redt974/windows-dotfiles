@@ -1,37 +1,71 @@
-# Windows Dotfiles :
+# Windows Dotfiles
 
-Copier le contenu du repository dans le dossier `C:/Users/<USERNAME>` pour les dossiers commençant avec un point.
+Repository contenant mes dotfiles Windows pour :
 
-Puis, ajouter ou modifier le ou les fichiers suivants : `C:/Users/<USERNAME>/WindowsPowerShell/Microsoft.PowerShell_profile.ps1` ou `C:/Users/<USERNAME>/PowerShell/Microsoft.PowerShell_profile.ps1` et
+* PowerShell
+* Fastfetch
+* Neovim
+* Oh My Posh
+* GlazeWM / YASB
+* VSCode
 
-Copier / Coller le contenu du fichier suivant : `windows-dotfiles/powershell/profile.ps1`.
+## Installation
+
+Cloner le repository :
+
+```powershell
+git clone https://github.com/redt974/windows-dotfiles.git $HOME\dotfiles
+cd $HOME\dotfiles
+```
+
+Exécuter ensuite :
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force
+.\setup.ps1
+```
+
+Le script :
+
+* copie automatiquement les dossiers cachés (`.config`, `.glzr`, `.oh-my-posh`, `.vscode`)
+* configure PowerShell
+* crée le lien symbolique pour Neovim
+* évite d’écraser une configuration existante
 
 ---
 
-Installer [oh-my-posh](https://ohmyposh.dev/) avec cette commande dans un PowerShell en tant qu'Administrateur :
+## Dépendances à installer
 
-- Winget :
+### Oh My Posh
+
+Installer [Oh My Posh](https://ohmyposh.dev/?utm_source=chatgpt.com) :
+
+**Winget**
 
 ```powershell
-winget install ohmyposh
+winget install JanDeDobbeleer.OhMyPosh
 ```
-- Choco :
+
+**Chocolatey**
 
 ```powershell
-choco install ohmyposh
+choco install oh-my-posh
 ```
 
 ---
 
-Installer [fastfetch](https://github.com/fastfetch-cli/fastfetch) avec cette commande dans un PowerShell en tant qu'Administrateur :
+### Fastfetch
 
-- Winget :
+Installer [fastfetch](https://github.com/fastfetch-cli/fastfetch?utm_source=chatgpt.com) :
+
+**Winget**
 
 ```powershell
 winget install fastfetch
 winget install sharkdp.fd
 ```
-- Choco :
+
+**Chocolatey**
 
 ```powershell
 choco install fastfetch
@@ -39,35 +73,37 @@ choco install fastfetch
 
 ---
 
-Installer [neovim](https://neovim.io/) avec cette commande et on va créer un lien symbolique pour le lier la config avec neovim : 
+### Neovim
 
-- Winget :
+Installer [Neovim](https://neovim.io/?utm_source=chatgpt.com) :
+
+**Winget**
 
 ```powershell
-winget install neovim
+winget install Neovim.Neovim
 ```
-- Choco :
+
+**Chocolatey**
 
 ```powershell
 choco install neovim
 ```
 
-```powershell
-New-Item -ItemType SymbolicLink `
-  -Path $env:LOCALAPPDATA\nvim `
-  -Target C:\Users\<USERNAME>\dotfiles\nvim\
-```
+Le symlink est créé automatiquement par `setup.ps1`.
 
 ---
 
-Installer [ntop](https://github.com/gsass1/NTop) avec cette commande dans un PowerShell en tant qu'Administrateur :
+### NTop
 
-- Winget :
+Installer [NTop](https://github.com/gsass1/NTop?utm_source=chatgpt.com) :
+
+**Winget**
 
 ```powershell
 winget install gsass1.NTop
 ```
-- Choco :
+
+**Chocolatey**
 
 ```powershell
 choco install ntop.portable
@@ -75,13 +111,23 @@ choco install ntop.portable
 
 ---
 
-## Fastfetch :
+## Fastfetch
 
-Pour utiliser `fastfetch`, on peut utiliser le raccourci configuré : `ff` ou `ff-ascii` ou `ff-pokemon`
+Alias disponibles :
 
-A l'ouverture d'un terminal Powershell
+```powershell
+ff
+ff-ascii
+ff-pokemon
+```
 
+Au démarrage d’un terminal PowerShell, Fastfetch affiche par défaut :
 
-, vous aurez donc un fastfetch en ascii Elden Ring par défaut avec une citation aléatoire.
+* un ASCII art Elden Ring
+* une citation aléatoire
 
-Mais si vous préférez Pokémon, faites la commande : `ff pokemon`
+Pour utiliser la version Pokémon :
+
+```powershell
+ff pokemon
+```
