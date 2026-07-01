@@ -6,9 +6,13 @@ $Mappings = @(
     @{ Source = Join-Path $RepoRoot ".config";      Target = Join-Path $UserHome ".config" }
     @{ Source = Join-Path $RepoRoot ".glzr";        Target = Join-Path $UserHome ".glzr" }
     @{ Source = Join-Path $RepoRoot ".oh-my-posh";  Target = Join-Path $UserHome ".oh-my-posh" }
-    @{ Source = Join-Path $RepoRoot ".vscode";      Target = Join-Path $UserHome ".vscode" }
+    @{ Source = Join-Path $RepoRoot ".vscode";      Target = Join-Path $env:APPDATA "Code\User" }
     @{ Source = Join-Path $RepoRoot "powershell";   Target = Join-Path $UserHome "powershell" }
 )
+
+Get-Content .\vscode\extensions.txt | ForEach-Object {
+    code --install-extension $_
+}
 
 function Copy-IfMissing {
     param([string]$Source, [string]$Target)

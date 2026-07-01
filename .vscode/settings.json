@@ -1,3 +1,104 @@
 {
-    "editor.mouseWheelZoom": true
+    "python.defaultInterpreterPath": "C:\\Python314\\python.exe",
+    "security.workspace.trust.untrustedFiles": "open",
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    
+    "[css]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
+    },
+    "editor.unicodeHighlight.allowedCharacters": {
+        "’": true,
+        " ": true
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "workbench.editorAssociations": {
+        "*.mp4": "vscode.videoPreview",
+        "*.png": "imagePreview.previewEditor",
+        "*.json": "default"
+    },
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "git.autofetch": true,
+    "dotnetAcquisitionExtension.existingDotnetPath": [
+        
+        {
+            "extensionId": "ms-dotnettools.csharp",
+            "path": "C:/Program Files/dotnet/dotnet.exe"
+        }
+    ],
+    "workbench.startupEditor": "none",
+    "dotnet.defaultSolution": "omnisharp.defaultLaunchSolution",
+    "dotnet.server.useOmnisharp": true,
+    "git.openRepositoryInParentFolders": "never",
+    "python.createEnvironment.trigger": "off",
+    "files.associations": {
+        "*.html": "html"
+    },
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "dart.flutterSdkPath": "C:\\Users\\Thibaut\\Documents\\Projets\\music-app\\flutter_music_player\\flutter",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Alt Catppuccin Mocha",
+    "cmake.configureOnOpen": false,
+    "vstuc.refreshOnSave": true,
+    "remote.SSH.remotePlatform": {
+        "192.168.10.156": "linux",
+        "192.168.10.180": "linux",
+        "raspberrypi": "linux",
+        "192.168.150.130": "linux",
+        "192.168.20.130": "linux",
+        "192.168.20.132": "macOS",
+        "192.168.1.179": "linux"
+    },
+    "files.exclude": {
+        "**/.git": false
+    },
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": {
+                "id": "terminal-cmd"
+            }
+        },
+        "Git Bash": {
+            "source": "Git Bash",
+            "icon": "terminal-git-bash"
+        }
+    },
+    "terminal.integrated.fontFamily": "JetBrainsMonoNL Nerd Font Mono",
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "git-assistant.checkConfigVariables": "disabled",
+    "json.schemaDownload.trustedDomains": {
+        "https://developer.microsoft.com/json-schemas/": true,
+        "https://github.com": true,
+        "https://json-schema.org/": true,
+        "https://json.schemastore.org/": true,
+        "https://raw.githubusercontent.com/devcontainers/spec/": true,
+        "https://raw.githubusercontent.com/microsoft/vscode/": true,
+        "https://schemastore.azurewebsites.net/": true,
+        "https://www.schemastore.org/": true
+    },
+    "git.confirmSync": false,
+    "[dockercompose]": {
+        "editor.defaultFormatter": "docker.docker"
+    },
+    "claudeCode.preferredLocation": "panel",
+    "docker.extension.enableComposeLanguageServer": false,
+    "workbench.statusBar.visible": false,
+    "workbench.browser.pageZoom": "100%",
+    "files.autoSave": "onFocusChange",
+    "python.terminal.useEnvFile": true,
 }
