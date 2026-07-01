@@ -10,7 +10,7 @@ $Mappings = @(
     @{ Source = Join-Path $RepoRoot "powershell";   Target = Join-Path $UserHome "powershell" }
 )
 
-Get-Content .\vscode\extensions.txt | ForEach-Object {
+Get-Content .\.vscode\extensions.txt | ForEach-Object {
     code --install-extension $_
 }
 
