@@ -1,4 +1,8 @@
 # setup.ps1
+
+# install the font JetBrainsMonoNerdFont
+winget install -e --id DEVCOM.JetBrainsMonoNerdFont
+
 $RepoRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $UserHome = $HOME
 
