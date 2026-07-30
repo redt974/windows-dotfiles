@@ -1,6 +1,3 @@
-# GlazeWM | Catppuccin Mocha | Glazing Mocha
-# Place this file at: C:/users/{username}/.config/yasb/config.yaml
-# You need to Replace {username} with your username and insert your wallpaper path at line 76. also provide the info at line 305 to use the ai chat.
 watch_stylesheet: true
 watch_config: true
 debug: false
@@ -64,7 +61,7 @@ bars:
         # - "ethernet"
         - "battery"
         - "clock"
-        # - "notifications"    
+        # - "notifications"
 widgets:
   wallpapers:
     type: "yasb.wallpapers.WallpapersWidget"
@@ -94,7 +91,7 @@ widgets:
         bin_empty: "\udb82\ude7a"
         bin_filled: "\udb82\ude79"
       callbacks:
-        on_left: 'exec "C:/Users/{username}/Desktop/file_explorer.lnk" shell:RecycleBinFolder'
+        on_left: 'exec "C:/Users/Thibaut/Desktop/file_explorer.lnk" shell:RecycleBinFolder'
         on_right: "empty_bin"
         on_middle: "do_nothing"
       show_confirmation: true
@@ -557,8 +554,6 @@ widgets:
       class_name: "ethernet"
       label: "<span color='#fab387'>󰤭</span>"
       label_alt: "Network Diagnostic Required"
-      callbacks:
-        on_left: 'exec powershell.exe -Command "Start-Process https://rroll.to/iHgSMg"'
   power_menu:
     type: "yasb.power_menu.PowerMenuWidget"
     options:
@@ -587,7 +582,7 @@ widgets:
         on_left: "toggle_label"
         on_middle: "do_nothing"
         on_right: "do_nothing"
-  network_speed: 
+  network_speed:
     type: "yasb.traffic.TrafficWidget"
     options:
       label: "<span class='download'>󰇚 {download_speed}</span> <span class='upload'>󰕒 {upload_speed}</span>"
@@ -604,8 +599,12 @@ widgets:
     options:
       label: "{data}"
       app_list:
-        - { icon: "󰀻", launch: "C:/Users/{username}/AppData/Local/FlowLauncher/Flow.Launcher.exe", name: "Flow Launcher" }
+        - { icon: "", launch: "C:/Users/Thibaut/AppData/Local/FlowLauncher/Flow.Launcher.exe", name: "Flow Launcher" }
         - { icon: "󰉋", launch: "explorer", name: "Explorer" }
-        - { icon: "󰨞", launch: "code", name: "VS Code" }
         - { icon: "󰆍", launch: "wt", name: "Terminal" }
-        - { icon: "", launch: "C:/Users/{username}/AppData/Local/Playnite/Playnite.FullscreenApp.exe", name: "Playnite" }
+        # - { icon: "󰇧", launch: "C:/Program Files/WindowsApps/TheBrowserCompany.Arc_1.116.1.3_x64__ttt1ap7aakyb4/Arc.exe", name: "Arc" }
+        - { icon: "󰇧", launch: "C:/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe", name: "Brave" }
+        - { icon: "󰖺", launch: "C:/Users/Thibaut/AppData/Local/Playnite/Playnite.FullscreenApp.exe", name: "Playnite" }
+        - { icon: "󱞁", launch: "C:/Users/Thibaut/AppData/Local/Programs/Obsidian/Obsidian.exe", name: "Obsidian" }
+        - { icon: "󰨞", launch: "code", name: "VS Code" }
+        - { icon: "", launch: "C:\\Program Files (x86)\\VMware\\VMware Workstation\\vmware.exe" , name: "VMware Workstation" }
